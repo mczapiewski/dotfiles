@@ -1,0 +1,16 @@
+ack.vim
+ctrlp.vim
+matchit
+MatchTagAlways
+nerdtree
+python-mode
+robotframework-vim
+tagbar
+taglist.vim
+vim-airline
+vim-bufferline
+vim-easytags
+vim-fugitive
+vim-indent-guides
+vim-misc
+vim-notes
