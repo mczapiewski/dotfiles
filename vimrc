@@ -179,7 +179,7 @@ highlight! link DiffText MatchParen
 "let g:airline_powerline_fonts=1
 
 "filetype for asciidoc
-autocmd BufRead,BufNewFile *.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT,*.adoc
+autocmd BufRead,BufNewFile *.asciidoc,*.adoc
         \ setlocal autoindent expandtab tabstop=8 softtabstop=2 shiftwidth=2 filetype=asciidoc
         \ textwidth=70 wrap formatoptions=tcqn
         \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
