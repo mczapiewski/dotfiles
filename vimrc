@@ -2,10 +2,13 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+set rtp+=%HOME%/vimfiles/bundle/Vundle.vim
+"call vundle#begin('%USERPROFILE%/vimfiles/bundle/')
+"call vundle#rc('%USERPROFILE%/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call vundle#begin('~/vimfiles/bundle/')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -18,6 +21,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'vim-airline/vim-airline'
+Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plugin 'https://github.com/jplaut/vim-arduino-ino.git'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -92,13 +97,16 @@ map <c-h> <c-w>h
 set laststatus=2
 "set term=xterm-256color
 "set termencoding=utf-8
-"set encoding=utf-8
+set encoding=utf-8
 "set t_Co=256
 "set guifont=Source\ Code\ Pro\ for\ Powerline\ for\ Powerline
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline:10
-"set guifont=Inconsolata\ for\ Powerline\ 15
-set guifont=Ubuntu\ Mono\ 10
-"let g:Powerline_symbols = 'fancy'
+"set guifont=inconsolata\ for\ powerline\ 15
+"set guifont=ubuntu\ mono\ 10
+
+"set guifont=DejaVu_Sans_Mono:h10:cEASTEUROPE:qDRAFT
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10:cEASTEUROPE:qDRAFT
+"let g:powerline_symbols = 'fancy'
 
 filetype plugin indent on
 
@@ -151,7 +159,7 @@ set shiftwidth=2
 set softtabstop=2
 "system clipboard to unnamed
 set clipboard=unnamed
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 "highlight search and toggle mapping
 set hlsearch
@@ -184,7 +192,7 @@ set undolevels=1000
 "source ~/.vim/cscope_maps.vim
 
 "ack.vim:
-nmap <Leader>a <Esc>:Ack!
+"nmap <Leader>a <Esc>:Ack!
 
 "match tags 
 let g:mta_use_matchparen_group = 1
@@ -223,7 +231,7 @@ let g:pymode_rope = 0
 " colors.
 highlight! link DiffText MatchParen
 
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 
 "filetype for asciidoc
 autocmd BufRead,BufNewFile *.asciidoc,*.adoc
@@ -234,3 +242,15 @@ autocmd BufRead,BufNewFile *.asciidoc,*.adoc
 
 "swithc off pymode lint
 let g:pymode_lint=0
+
+"remove window menu bar and scrols
+set go-=m
+set go-=T
+set go-=r
+set go-=L
+
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_symbols = get(g:, 'airline_symbols', {})
+let g:airline_symbols.space = "\ua0"
