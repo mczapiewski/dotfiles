@@ -6,9 +6,8 @@ filetype off                  " required
 "call vundle#begin()
 set rtp+=%HOME%/vimfiles/bundle/Vundle.vim
 "call vundle#begin('%USERPROFILE%/vimfiles/bundle/')
-"call vundle#rc('%USERPROFILE%/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
-call vundle#begin('~/vimfiles/bundle/')
+call vundle#begin('~\vimfiles\bundle')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -22,7 +21,16 @@ Plugin 'L9'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plugin 'https://github.com/jplaut/vim-arduino-ino.git'
+Plugin 'https://github.com/majutsushi/tagbar.git'
+Plugin 'https://github.com/vimwiki/vimwiki.git'
+Plugin 'taglist.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'easytags.vim'
+"experimental plugins:
+Plugin 'terryma/vim-smooth-scroll'
+Plugin 'matze/vim-move'
+Plugin 'tpope/vim-commentary'
+Plugin 'xolox/vim-notes'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -116,10 +124,15 @@ inoremap jk <Esc>
 " set colorscheme for gui mode
 "colorscheme pablo
 
-if (&term =~ "xterm-256color") || (&term =~ "screen")
+if (&term =~ "xterm-256color") || (&term =~ "screen")   
   colorscheme elflord
 else
-  colorscheme desert
+  if (&term =~ "win32")
+    colorscheme monrovia
+  else
+    "colorscheme desert
+    colorscheme quantum
+  endif
 endif
 
 
@@ -148,6 +161,8 @@ highlight PmenuSel ctermbg=white ctermfg=blue
 set number
 "set colorcolumn=80
 "highlight ColorColumn ctermbg=blue
+
+au BufNewFile,BufRead *.sdh set filetype=c
 
 "incremental search
 set incsearch
@@ -192,7 +207,7 @@ set undolevels=1000
 "source ~/.vim/cscope_maps.vim
 
 "ack.vim:
-"nmap <Leader>a <Esc>:Ack!
+nmap <Leader>a <Esc>:Ack!
 
 "match tags 
 let g:mta_use_matchparen_group = 1
@@ -246,7 +261,7 @@ let g:pymode_lint=0
 "remove window menu bar and scrols
 set go-=m
 set go-=T
-set go-=r
+"set go-=r
 set go-=L
 
 
@@ -254,3 +269,15 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_symbols = get(g:, 'airline_symbols', {})
 let g:airline_symbols.space = "\ua0"
+
+" Move by 'display lines' rather than 'logical lines' if no v:count was
+" " provided.  When a v:count is provided, move by logical lines.
+ nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
+ xnoremap <expr> j v:count > 0 ? 'j' : 'gj'
+ nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
+ xnoremap <expr> k v:count > 0 ? 'k' : 'gk'
+ " Ensure 'logical line' movement remains accessible.
+ nnoremap <silent> gj j
+ xnoremap <silent> gj j
+ nnoremap <silent> gk k
+ xnoremap <silent> gk k
