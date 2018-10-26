@@ -19,18 +19,19 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
-Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline'
 Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vimwiki/vimwiki.git'
 Plugin 'taglist.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'easytags.vim'
+"Plugin 'easytags.vim'
 "experimental plugins:
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'matze/vim-move'
 Plugin 'tpope/vim-commentary'
 Plugin 'xolox/vim-notes'
+Plugin 'hex.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -41,6 +42,10 @@ Plugin 'xolox/vim-notes'
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+"
+"
+" Plugins to try in the future:
+" https://github.com/cesheridan/tabwins.vim.git
 
 "Plugin 'scroolosse/nerdTree'
 
@@ -75,6 +80,8 @@ noremap <Leader>E :q!<CR>
 "moving through tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
+"map <Leader>f :execute "vimgrep /" . expand("<cword>") . "/j **\*.c **\*.cpp **\*.h **\*.sdh"<Bar>cw 20<CR>
+map <F4> :execute "vimgrep /" . expand("<cword>") . "/j pkg/**/*.c" <Bar> cw<CR>
 
 "indenting lines
 vnoremap < <gv
@@ -176,6 +183,12 @@ set softtabstop=2
 set clipboard=unnamed
 "set clipboard=unnamedplus
 
+" highlight current line
+set cursorline
+" set number of lines to top/bottom till scroll during search results jump
+set scrolloff=10
+
+
 "highlight search and toggle mapping
 set hlsearch
 "noremap <C-;> :nohl<CR>
@@ -220,6 +233,10 @@ hi IndentGuidesEven ctermbg=lightgrey
 
 "for Tagbar plugin
 nmap <F8> :TagbarToggle<CR>
+
+"vimgrep current word
+":map <F4> :execute "vimgrep /" . expand("<cword>") . "/j C:/lion/**/*.c " <Bar> cw<CR>
+:map <F4> :execute "vimgrep /" . expand("<cword>") . "/j ** " <Bar> cw<CR>
 
 " Configuration for Vim-Notes
 ":let g:notes_directories = ['~/Documents/notes', '~/Dropbox/Shared Notes']
