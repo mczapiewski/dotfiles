@@ -19,7 +19,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
-"Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vimwiki/vimwiki.git'
@@ -32,6 +32,9 @@ Plugin 'matze/vim-move'
 Plugin 'tpope/vim-commentary'
 Plugin 'xolox/vim-notes'
 Plugin 'hex.vim'
+Plugin 'gtags.vim'
+Plugin 'srec.vim'
+" Plugin 'https://github.com/garbas/vim-snipmate'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -78,10 +81,12 @@ let mapleader = ","
 noremap <Leader>e :quit<CR>
 noremap <Leader>E :q!<CR>
 "moving through tabs
+map <Leader>t <esc>:tabnew<CR>
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
-"map <Leader>f :execute "vimgrep /" . expand("<cword>") . "/j **\*.c **\*.cpp **\*.h **\*.sdh"<Bar>cw 20<CR>
-map <F4> :execute "vimgrep /" . expand("<cword>") . "/j pkg/**/*.c" <Bar> cw<CR>
+"map <Leader>f :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*.c **/*.cpp **/*.h **/*.sdh" <Bar> cw 20<CR>
+map <Leader>v :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*.[c,h,cpp,sdh]" <Bar> cw<CR>
+
 
 "indenting lines
 vnoremap < <gv
@@ -145,7 +150,7 @@ endif
 
 
 "Toggle NERD
-nmap <Leader>t :NERDTreeToggle<CR>
+nmap <Leader>f :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 "syntax highliting
@@ -170,6 +175,7 @@ set number
 "highlight ColorColumn ctermbg=blue
 
 au BufNewFile,BufRead *.sdh set filetype=c
+au BufNewFile,BufRead *.850 set filetype=asm
 
 "incremental search
 set incsearch
@@ -193,7 +199,8 @@ set scrolloff=10
 set hlsearch
 "noremap <C-;> :nohl<CR>
 noremap <Leader>j :nohl<CR>
-noremap <Leader>, <c-]>
+"noremap <Leader>, <c-]>
+noremap <Leader>, :GtagsCursor<CR>
 "vnoremap <C-m> :nohl<CR>
 "inoremap <C-m> :nohl<CR>
 
@@ -298,3 +305,41 @@ let g:airline_symbols.space = "\ua0"
  xnoremap <silent> gj j
  nnoremap <silent> gk k
  xnoremap <silent> gk k
+
+ let g:Gtags_Auto_Map = 1
+
+ command! -nargs=? -range Dec2hex call s:Dec2hex(<line1>, <line2>, '<args>')
+ function! s:Dec2hex(line1, line2, arg) range
+   if empty(a:arg)
+     if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
+       let cmd = 's/\%V\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
+     else
+       let cmd = 's/\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
+     endif
+     try
+       execute a:line1 . ',' . a:line2 . cmd
+     catch
+       echo 'Error: No decimal number found'
+     endtry
+   else
+     echo printf('%x', a:arg + 0)
+   endif
+ endfunction
+
+ command! -nargs=? -range Hex2dec call s:Hex2dec(<line1>, <line2>, '<args>')
+ function! s:Hex2dec(line1, line2, arg) range
+   if empty(a:arg)
+     if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
+       let cmd = 's/\%V0x\x\+/\=submatch(0)+0/g'
+     else
+       let cmd = 's/0x\x\+/\=submatch(0)+0/g'
+     endif
+     try
+       execute a:line1 . ',' . a:line2 . cmd
+     catch
+       echo 'Error: No hex number starting "0x" found'
+     endtry
+   else
+     echo (a:arg =~? '^0x') ? a:arg + 0 : ('0x'.a:arg) + 0
+   endif
+ endfunction
