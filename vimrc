@@ -15,12 +15,12 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'vim-airline/vim-airline'
-Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
+" Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vimwiki/vimwiki.git'
 Plugin 'taglist.vim'
@@ -34,6 +34,9 @@ Plugin 'xolox/vim-notes'
 Plugin 'hex.vim'
 Plugin 'gtags.vim'
 Plugin 'srec.vim'
+Plugin 'c.vim'
+Plugin 'aklt/plantuml-syntax'
+Plugin 'ludovicchabant/vim-gutentags'
 " Plugin 'https://github.com/garbas/vim-snipmate'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -49,8 +52,6 @@ Plugin 'srec.vim'
 "
 " Plugins to try in the future:
 " https://github.com/cesheridan/tabwins.vim.git
-
-"Plugin 'scroolosse/nerdTree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
