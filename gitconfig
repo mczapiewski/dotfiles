@@ -1,0 +1,9 @@
+[user]
+#  email = xyz@xyz.com
+#  name = xyz xyz
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lga = log --color --date-order --graph --oneline --decorate --all
+  co = checkout
+  st = status
+
