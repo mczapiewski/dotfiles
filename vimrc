@@ -4,10 +4,10 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 "set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin()
-set rtp+=%HOME%/vimfiles/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin('%USERPROFILE%/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
-call vundle#begin('~\vimfiles\bundle')
+call vundle#begin('~/.vim')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -31,6 +31,7 @@ Plugin 'terryma/vim-smooth-scroll'
 Plugin 'matze/vim-move'
 Plugin 'tpope/vim-commentary'
 Plugin 'xolox/vim-notes'
+Plugin 'tyrannicaltoucan/vim-quantum'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
