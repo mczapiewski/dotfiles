@@ -1,0 +1,43 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+    name = Mariusz Czapiewski
+    email = mmczapiewski@gmail.com
+
+[color]
+    status = auto
+[core]
+    autocrlf = true
+    excludesfile = C:\\Users\\mariusz.czapiewski\\Documents\\gitignore_global.txt
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --color --date-order --graph --oneline --decorate --all
+    co = checkout
+    st = status
+    stu = status -uno
+    dt = difftool
+    mt = mergetool
+
+[diff]
+#    tool = bc3
+[difftool]
+#    prompt = false
+[difftool "bc3"]
+    #use cygpath to transform cygwin path $LOCAL (something like /tmp/U5VvP1_abc) to windows path, because bc3 is a windows software
+#    cmd = \""c:/projects/software/BCompare/BCompare.exe\" \"$LOCAL\" \"$REMOTE\""
+
+#    trustExitCode = true
+[merge]
+#    tool = bc3
+[mergetool]
+#    prompt = false
+[mergetool "bc3"]
+    #trustExitCode = true
+#    cmd = \"c:/projects/software/BCompare/BCompare.exe\" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+#    trustExitCode = true
+
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
